@@ -59,21 +59,25 @@ macro_rules! ok_files {
     };
 }
 
+const SPIDERS : &str = "tests/inputs/spiders.txt";
+const BUSTLE : &str  = "tests/inputs/the_bustle.txt";
+const EMPTY : &str   = "tests/input/empty.txt";
+
 ok_file!(empty);
 ok_file!(fox);
 ok_file!(spiders);
 ok_file!(the_bustle);
 
-ok_files!(two_files, &["tests/inputs/spiders.txt", "tests/inputs/the_bustle.txt"], "spiders+bustle");
-ok_files!(two_files_num, &["tests/inputs/spiders.txt", "tests/inputs/the_bustle.txt", "-n"], "spiders+bustle.num");
-ok_files!(one_file_num, &["tests/inputs/the_bustle.txt", "-n"], "bustle.num");
+ok_files!(two_files, &[SPIDERS, BUSTLE], "spiders+bustle");
+ok_files!(two_files_num, &[SPIDERS, BUSTLE, "-n"], "spiders+bustle.num");
+ok_files!(one_file_num, &[BUSTLE, "-n"], "bustle.num");
 
-ok_files!(one_file_num_noblank, &["tests/inputs/the_bustle.txt", "-b"], "bustle.num-b");
+ok_files!(one_file_num_noblank, &[BUSTLE, "-b"], "bustle.num-b");
 
 
 #[test]
 fn fail_both_num_args() -> TestResult {
-    run_and_fail(&["tests/input/empty.txt", "-b", "-n"], "",
+    run_and_fail(&[EMPTY, "-b", "-n"], "",
     "error: The argument '-n' cannot be used with '-b'
 
 USAGE:
