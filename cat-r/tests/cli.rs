@@ -74,6 +74,12 @@ ok_files!(one_file_num, &[BUSTLE, "-n"], "bustle.num");
 
 ok_files!(one_file_num_noblank, &[BUSTLE, "-b"], "bustle.num-b");
 
+#[test]
+fn fail_bad_file() -> TestResult {
+    run_and_fail(&["tests/inputs/this-file-does-not-exist"],
+                 "",
+                 "Failed to open tests/inputs/this-file-does-not-exist: The system cannot find the file specified. (os error 2)\n")
+}
 
 #[test]
 fn fail_both_num_args() -> TestResult {
