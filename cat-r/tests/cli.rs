@@ -61,7 +61,7 @@ macro_rules! ok_files {
 
 const SPIDERS : &str = "tests/inputs/spiders.txt";
 const BUSTLE : &str  = "tests/inputs/the_bustle.txt";
-const EMPTY : &str   = "tests/input/empty.txt";
+const EMPTY : &str   = "tests/inputs/empty.txt";
 
 ok_file!(empty);
 ok_file!(fox);
@@ -75,10 +75,10 @@ ok_files!(one_file_num, &[BUSTLE, "-n"], "bustle.num");
 ok_files!(one_file_num_noblank, &[BUSTLE, "-b"], "bustle.num-b");
 
 #[test]
-fn fail_bad_file() -> TestResult {
-    run_and_fail(&["tests/inputs/this-file-does-not-exist"],
-                 "",
-                 "Failed to open tests/inputs/this-file-does-not-exist: The system cannot find the file specified. (os error 2)\n")
+fn skip_bad_file() -> TestResult {
+    run(&["tests/inputs/this-file-does-not-exist"],
+        EMPTY,
+        "Failed to open tests/inputs/this-file-does-not-exist: The system cannot find the file specified. (os error 2)\n")
 }
 
 #[test]

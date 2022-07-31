@@ -61,7 +61,7 @@ pub fn run(config: Config) -> MyResult<()> {
         let fread = match open(&file) {
             Err(e) => {
                 eprintln!("Failed to open {}: {}", file, e);
-                std::process::exit(1)
+                continue;
             },
             Ok(rdr) => rdr,
         };
