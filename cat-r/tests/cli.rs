@@ -78,7 +78,7 @@ ok_files!(one_file_num_noblank, &[BUSTLE, "-b"], "bustle.num-b");
 fn skip_bad_file() -> TestResult {
     run(&["tests/inputs/this-file-does-not-exist"],
         EMPTY,
-        "Failed to open tests/inputs/this-file-does-not-exist: The system cannot find the file specified. (os error 2)\n")
+        "Failed to open tests/inputs/this-file-does-not-exist: No such file or directory (os error 2)\n")
 }
 
 #[test]
@@ -87,7 +87,7 @@ fn fail_both_num_args() -> TestResult {
     "error: The argument '-n' cannot be used with '-b'
 
 USAGE:
-    cat-r.exe -n -b
+    cat-r -n -b
 
 For more information try --help\n")
 }
